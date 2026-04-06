@@ -19,8 +19,8 @@ parser.add_option("--column", dest=None, default="Values")
 opts,args = parser.parse_args()
 
 def savepath(src_path, dest_path, normlize, column):
-    LD_51 = pd.read_excel(src_path)
-    pro = LD_51[column].values
+    activity = pd.read_excel(src_path)
+    pro = activity[column].values
     
     if isinstance(pro[0], (str)) : 
         if pro[0]=="minus":
@@ -39,7 +39,7 @@ def savepath(src_path, dest_path, normlize, column):
 
 
     data_path = dest_path
-    smiles = LD_51["Smiles"].values
+    smiles = activity["Smiles"].values
     prop,smilesp = [],[]
     for s,p in zip(smiles, pro):
         if isinstance(p, (int, float, complex)) and isinstance(s, (str)) : 
