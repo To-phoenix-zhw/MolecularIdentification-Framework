@@ -178,4 +178,4 @@ python -u interact.py   --mode test   --checkpoint_path checkpoints/almodel.pt  
 
 ## <a name="contact"></a>5. Contact
 
-If you encounter any problem, do not hesitate to contact [hanwenzhang@stu.scu.edu.cn](mailto:hanwenzhang@stu.scu.edu.cn). You could also create an issue under the repository.
+If you encounter any issues, please feel free to contact us at [hanwenzhang@stu.scu.edu.cn](mailto:hanwenzhang@stu.scu.edu.cn) or open an issue in the repository.
