@@ -18,8 +18,7 @@ Official PyTorch implementation of paper "Policy-Based Active Learning Framework
   - [3.2 Training](#training)
   - [3.3 Testing](#testing)
 - [4. Running on your own data](#custom)
-- [5. Supplementary data](#SI)
-- [6. Contact](#contact)
+- [5. Contact](#contact)
 
 
 ## <a name="installation"></a>1. Installation guide
@@ -82,18 +81,12 @@ If you want to test the framework on the other properties, you can edit the `run
 
 ### <a name="datasets"></a>3.1 Datasets
 
-The dataset used in the training, validation, and testing is located at [data](https://osf.io/ck94p). Please download  and move it to the folder `data/dataset` by following steps:
-
-1. Download the dataset archive `dataset.rar` from  [data](https://osf.io/ck94p).
-
-2. Unzip the dataset by running the command: 
-
-```bash
-sudo apt-get install rar
-rar x dataset.rar
-```
-
-3. Run the command: `mv dataset ./data/dataset`.
+### `data/` directory
+- `ChEMBL_train_info.csv`:  The list of the 1228 tasks.
+- `ChEMBL_test_info.csv`:  The list of the 136 tasks.
+- `raw_excel.tar.gz`: 
+- `processed_data.tar.gz`:
+- ...
 
 ### <a name="training"></a>3.2 Training
 
@@ -164,16 +157,12 @@ time cost [time] s
 
 ## <a name="custom"></a> 4. Running on your own data
 
-To applied the trained model on your own data, you should first build the dataset and then run the program.
+Apply the trained model to your own data.
+
 (1) Build the custom dataset.
 
 ```bash
  python databuild.py --src_path [file_name].xlsx --dest_path [folder to save]  --column [Property name in the excel file]
-```
-
-For example, we take the lidocaine data to build the dataset.
-```bash
- python databuild.py --src_path data/lidocaine_data.xlsx --dest_path data_test  --column Objective
 ```
 
 
@@ -185,14 +174,7 @@ python -u interact.py   --mode test   --checkpoint_path checkpoints/almodel.pt  
 
 [Time it takes]: The process will take several minutes to obtain the performance on a single GPU.
 
-## <a name="SI"></a> 5. Supplementary data
-### `supplementary/` directory
-- `statistics_of_the_dataset.xlsx`:  The list of the 1409 properties, which were divided into the training, validation, and test set with the ratio of 8:1:1. This list reports the property name, the property type (e.g., EC50, IC50, Ki, Kd, etc.), and the sample number of the property.
-- `Wetlab-1. ALL Compound-CFA.xlsx`:  The CFA data of all the compounds used in our work.
-- `Wetlab-2. AUC.xlsx`:  The AUC data of all the compounds used in our work.
-- ...
 
+## <a name="contact"></a>5. Contact
 
-## <a name="contact"></a>6. Contact
-
-If you encounter any problems during the setup of environment or the execution of the framework, do not hesitate to contact [liuxianggen@scu.edu.cn](mailto:liuxianggen@scu.edu.cn) or [hanwenzhang@stu.scu.edu.cn](mailto:hanwenzhang@stu.scu.edu.cn). You could also create an issue under the repository: https://github.com/To-phoenix-zhw/MolecularIdentification-Framework.
+If you encounter any problem, do not hesitate to contact [hanwenzhang@stu.scu.edu.cn](mailto:hanwenzhang@stu.scu.edu.cn). You could also create an issue under the repository.
