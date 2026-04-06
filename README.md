@@ -83,7 +83,7 @@ If you want to test the framework on the other properties, you can edit the `run
 
 ### `data/` directory
 - `ChEMBL_train_info.csv`: Detailed information for 1,228 training tasks derived from ChEMBL.
-- `ChEMBL_test_info.csv`: Detailed information for 136 test tasks derived from ChEMBL. 
+- `ChEMBL_test_info.csv`: Detailed information for 136 test tasks derived from ChEMBL (corresponding to Table S7). 
 - `raw_excel.tar.gz`: Archive of the original Excel files downloaded from the ChEMBL database.
 - `processed_data.tar.gz`: Archive of the processed data used directly by our code, with each sample stored in a separate directory.
 - ...
