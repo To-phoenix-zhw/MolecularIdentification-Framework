@@ -105,24 +105,24 @@ data/
 
 #### MolNet
 
-- `raw_excel.tar.gz`
+- `raw_excel.tar.gz`:
    Archive of the original raw data files from MoleculeNet.
-- `processed_data.tar.gz`
+- `processed_data.tar.gz`:
    Preprocessed data used directly by our framework. Each task is stored in a separate directory.
-- `train_tasks.xlsx` / `test_tasks.xlsx`
+- `train_tasks.xlsx` / `test_tasks.xlsx`:
    Task splits used in the ChEMBL setting. 
-- `fold{i}_train_tasks.xlsx`, `fold{i}_test_tasks.xlsx` (i = 0,...,4)
+- `fold{i}_train_tasks.xlsx`, `fold{i}_test_tasks.xlsx` (i = 0,...,4):
    Task-level splits for 5-fold cross-validation.
 
 #### ChEMBL
 
-- `raw_excel.tar.gz`
+- `raw_excel.tar.gz`:
    Archive of the original Excel files downloaded from the ChEMBL database.
-- `processed_data.tar.gz`
+- `processed_data.tar.gz`:
    Preprocessed task data used directly by the code.
-- `ChEMBL_train_info.csv`
+- `ChEMBL_train_info.csv`:
    Detailed information for training tasks derived from ChEMBL.
-- `ChEMBL_test_info.csv`
+- `ChEMBL_test_info.csv`:
    Detailed information for test tasks derived from ChEMBL.
 
 ### <a name="training"></a>3.2 Training
