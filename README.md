@@ -81,14 +81,50 @@ If you want to test the framework on the other properties, you can edit the `run
 
 ### <a name="datasets"></a>3.1 Datasets
 
-### `data/` directory
-- `ChEMBL_train_info.csv`: Detailed information for 1,228 training tasks derived from ChEMBL.
-- `ChEMBL_test_info.csv`: Detailed information for 136 test tasks derived from ChEMBL (corresponding to Table S7). 
-- `raw_excel.tar.gz`: Archive of the original Excel files downloaded from the ChEMBL database.
-- `processed_data.tar.gz`: Archive of the processed data used directly by our code, with each sample stored in a separate directory.
-- ...
+All datasets are organized under the `data/` directory, separated by source:
 
-  
+```
+data/
+├── MolNet/
+│   ├── raw_excel.tar.gz
+│   ├── processed_data.tar.gz
+│   ├── train_tasks.xlsx
+│   ├── test_tasks.xlsx
+│   ├── fold0_train_tasks.xlsx
+│   ├── fold0_test_tasks.xlsx
+│   ├── ...
+│   ├── fold4_train_tasks.xlsx
+│   └── fold4_test_tasks.xlsx
+│
+└── ChEMBL/
+    ├── raw_excel.tar.gz
+    ├── processed_data.tar.gz
+    ├── ChEMBL_train_info.csv
+    └── ChEMBL_test_info.csv
+```
+
+#### MolNet
+
+- `raw_excel.tar.gz`
+   Archive of the original raw data files from MoleculeNet.
+- `processed_data.tar.gz`
+   Preprocessed data used directly by our framework. Each task is stored in a separate directory.
+- `train_tasks.xlsx` / `test_tasks.xlsx`
+   Task splits used in the ChEMBL setting. 
+- `fold{i}_train_tasks.xlsx`, `fold{i}_test_tasks.xlsx` (i = 0,...,4)
+   Task-level splits for 5-fold cross-validation.
+
+#### ChEMBL
+
+- `raw_excel.tar.gz`
+   Archive of the original Excel files downloaded from the ChEMBL database.
+- `processed_data.tar.gz`
+   Preprocessed task data used directly by the code.
+- `ChEMBL_train_info.csv`
+   Detailed information for training tasks derived from ChEMBL.
+- `ChEMBL_test_info.csv`
+   Detailed information for test tasks derived from ChEMBL.
+
 ### <a name="training"></a>3.2 Training
 
 #### Training from scratch
