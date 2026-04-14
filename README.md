@@ -88,6 +88,7 @@ data/
 ├── MolNet/
 │   ├── raw_excel.tar.gz
 │   ├── processed_data.tar.gz
+│   ├── task_level_dataset_mapping.xlsx
 │   ├── train_tasks.xlsx
 │   ├── test_tasks.xlsx
 │   ├── fold0_train_tasks.xlsx
@@ -107,10 +108,17 @@ data/
 
 - `raw_excel.tar.gz`:
    Archive of the original raw data files from MoleculeNet.
+   
 - `processed_data.tar.gz`:
    Preprocessed data used directly by our framework. Each task is stored in a separate directory.
+   
+- `task_level_dataset_mapping.xlsx`: 
+
+   A reference table that maps each task to its corresponding dataset and category.
+
 - `train_tasks.xlsx` / `test_tasks.xlsx`:
-   Task splits used in the ChEMBL setting. 
+   Task splits used for the ChEMBL experimental setting, where MoleculeNet training tasks are additionally incorporated.
+   
 - `fold{i}_train_tasks.xlsx`, `fold{i}_test_tasks.xlsx` (i = 0,...,4):
    Task-level splits for 5-fold cross-validation.
 
