@@ -172,7 +172,7 @@ def run_al_epoch(
         dist = math.fabs(SOTA - GT_max_point.y.item())/(GT_max_point.y.item() + 1e-5)
         if dist < 1e-5 :
             identify_flag = True
-            if  i >= num_iter:
+            if i >= num_iter:
                 break
         if mode != 'train' and patient > 4 and i > 10: 
             if pri:
