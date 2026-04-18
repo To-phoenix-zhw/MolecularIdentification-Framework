@@ -133,7 +133,7 @@ def train(
 
         # Update parameters every 20 episodes
         if cur_epo % optnum == optnum - 1: 
-            clip_grad_norm_(almodel.parameters(), 5.0)  
+            clip_grad_norm_(almodel.parameters(), 2.0)  
             aloptimizer.step()  
             aloptimizer.zero_grad() 
             almodel.zero_grad()  
