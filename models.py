@@ -125,8 +125,6 @@ def run_al_epoch(
     pri=True, 
     active_flag=True,
     epsilon=0.1,
-    tau=0.9,
-    beta=0.3,
 ):
     
 
@@ -137,11 +135,7 @@ def run_al_epoch(
     # Historical experimental records
     already_dataX = (initial_point.X).copy()  
     already_datay = (initial_point.y).copy()  
-    already_dataid = np.array([initial_point.smi], dtype=object) 
-
-    bitstring = "".join((initial_point.X.reshape(-1)).astype(str))
-    feat_xi = DataStructs.cDataStructs.CreateFromBitString(bitstring)
-    
+    already_dataid = np.array([initial_point.smi], dtype=object)    
 
     # Untested molecule candidates
     ready_dataX = X.copy()  
@@ -180,7 +174,7 @@ def run_al_epoch(
             identify_flag = True
             if  i >= num_iter:
                 break
-        if mode != 'train' and patient>4 and i >10: 
+        if mode != 'train' and patient > 4 and i > 10: 
             if pri:
                 print("Framework: stops the identification process since no better molecules were found.")
             break
@@ -218,7 +212,6 @@ def run_al_epoch(
                 print("Human: Conducts experiment and obtains the property value: ", measuredy)
         
         # compute the immediate reward
-        delta_y = (measuredy - SOTA)/(GT_max_point.y.item() - SOTA + 1e-5)
         if (measuredy > SOTA) and (math.fabs(measuredy-SOTA)>1e-5):
             reward = (measuredy - SOTA)/(GT_max_point.y.item() - initial_point.y.item() + 1e-5)
             SOTA = measuredy
@@ -230,17 +223,7 @@ def run_al_epoch(
 
         else:
             reward = 0
-            patient+=1
-
-        #causal reward
-        feat_xi_new = ready_dataX[index]
-        bitstring="".join(feat_xi_new.astype(str))
-        fp_xi_new = DataStructs.cDataStructs.CreateFromBitString(bitstring)
-        molsim = DataStructs.DiceSimilarity(feat_xi, fp_xi_new)
-        feat_xi =  fp_xi_new 
-        if molsim>tau and delta_y>beta and delta_y>0.05 :
-            if len(rewards)>0:
-                rewards[-1] = rewards[-1]+reward
+            patient += 1
 
         # Update the historical experimental records and untested molecule candidates
         already_dataX = np.concatenate((already_dataX, ready_dataX[index].reshape(1, -1)))
