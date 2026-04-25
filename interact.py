@@ -162,12 +162,12 @@ class ActiveModel(nn.Module):
 
 
 
-def choose_experimental_x(size, scores, active_flag=True, epsilon=0.1, mode='train'):
+def choose_experimental_x(size, scores, active_flag=True, epsilon=0.9, mode='train'):
     if not active_flag:
         return random.randint(0, size-1)
 
     if mode == "train":
-        if random.random()>epsilon:
+        if random.random() <= epsilon:
             return random.randint(0, size-1)
         else:
             return torch.argmax(scores).item() 

@@ -94,13 +94,13 @@ def fitting_model(X, y, num_epoch=1000, early_stopping_rounds=5):
 
 
 
-def choose_experimental_x(size, scores, active_flag=True, epsilon=0.1, mode='train'):
+def choose_experimental_x(size, scores, active_flag=True, epsilon=0.9, mode='train'):
     """Select a molecule to experiment """ 
 
     if not active_flag:
         return random.randint(0, size-1)
     if mode == "train":
-        if random.random()>epsilon:
+        if random.random() <= epsilon:
             return random.randint(0, size-1)
         else:
             return torch.argmax(scores).item()  
@@ -124,7 +124,7 @@ def run_al_epoch(
     num_iter=10, 
     pri=True, 
     active_flag=True,
-    epsilon=0.1,
+    epsilon=0.9,
 ):
     
 
