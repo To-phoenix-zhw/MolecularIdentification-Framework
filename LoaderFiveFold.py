@@ -1,22 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[1]:
-
 import os
 import deepchem as dc
 import random, pickle
 import numpy as np
 
 
-# In[2]:
 
 
-ecfp_dataset_path = "/home/zhanghanwen/ACLearning/datasets/ECFP"
-data_path = "/home/zhanghanwen/ACLearning/datasets/"
+ecfp_dataset_path = "./datasets/ECFP"
+data_path = "./datasets/"
 
 
-# In[3]:
 
 
 featurizer='ECFP'
@@ -25,7 +20,6 @@ k_fold = 5
 seed = 0 
 
 
-# In[4]:
 
 
 def set_seed(seed=0):
@@ -34,11 +28,9 @@ def set_seed(seed=0):
     print("set seed %d" % seed)
 
 
-# 设定随机种子
 set_seed(seed)
 
 
-# In[5]:
 
 
 def dataset_describe(datasets_list):
@@ -57,7 +49,6 @@ def dataset_describe(datasets_list):
     return datasets_num, molecules_scale, tasks_scale
 
 
-# In[6]:
 
 
 def Quantum_Mechanical_Datasets(featurizer, dataset_path):
@@ -91,7 +82,6 @@ def Quantum_Mechanical_Datasets(featurizer, dataset_path):
     return quantum_datasets_list
 
 
-# In[7]:
 
 
 def Physical_Chemistry_Datasets(featurizer, dataset_path):
@@ -147,7 +137,6 @@ def Physical_Chemistry_Datasets(featurizer, dataset_path):
     return pc_datasets_list
 
 
-# In[9]:
 
 
 def BioDatasets(featurizer, dataset_path):
@@ -174,7 +163,6 @@ def BioDatasets(featurizer, dataset_path):
     return bio_datasets_list
 
 
-# In[10]:
 
 
 def Physiology_Datasets(featurizer, dataset_path):
@@ -193,17 +181,14 @@ def Physiology_Datasets(featurizer, dataset_path):
     return physi_datasets_list
 
 
-# In[11]:
 
 
 def AllDatasetsLoader(featurizer='ECFP', dataset_path=ecfp_dataset_path):
-    # 分大类加载数据集
     quantum_datasets_list = Quantum_Mechanical_Datasets(featurizer, dataset_path)
     pc_datasets_list = Physical_Chemistry_Datasets(featurizer, dataset_path)
     bio_datasets_list = BioDatasets(featurizer, dataset_path)
     physi_datasets_list = Physiology_Datasets(featurizer, dataset_path)
     
-    # 合并数据集
     all_datasets_list = quantum_datasets_list + pc_datasets_list + bio_datasets_list + physi_datasets_list
     print("All_Datasets:")
     all_datasets_num, all_molecules_scale, all_tasks_scale = dataset_describe(all_datasets_list)
@@ -211,29 +196,18 @@ def AllDatasetsLoader(featurizer='ECFP', dataset_path=ecfp_dataset_path):
     return all_datasets_list, all_tasks_scale
 
 
-# In[14]:
-
-
-# cnt_all_ids = 0
-# for dataset in all_datasets_list:
-#     cnt_all_ids += len(dataset.ids)
-# cnt_all_ids
-
-
-# In[15]:
 
 
 def get_vals_no(a,n):
-    # 每个依次当过验证集
     val_no = []
     random.shuffle(a)
     p = True
     while p:
         b=random.sample(a,n)
-        b.sort()   #排序
+        b.sort()   
         val_no.append(b)
         print(b)
-        a=list(set(a).difference(set(b)))  #去除已抽样的数据
+        a=list(set(a).difference(set(b))) 
         if len(a) > 0:
             p=True
         else:
@@ -242,7 +216,6 @@ def get_vals_no(a,n):
     return val_no
 
 
-# In[16]:
 
 
 def get_trains_no(a, vals_no):
@@ -254,17 +227,14 @@ def get_trains_no(a, vals_no):
     return trains_no
 
 
-# In[24]:
 
 
 def get_train_val_fold(tasks_num, fold=0, k_fold=5):
-    # 5折交叉验证，5组，随机9等分任务
     tasks_no = list(range(tasks_num))
     elements_num = int(tasks_num / k_fold)
     vals_no = get_vals_no(tasks_no, elements_num)
     trains_no = get_trains_no(tasks_no, vals_no)
     
-    # 当前需要生成第几组
     
     return vals_no[fold], trains_no[fold] 
 
@@ -281,7 +251,6 @@ def DatasetsSmiles(all_datasets_list, data_path=data_path):
             np.savetxt(smipath, datasets.ids, fmt='%s')
             # np.loadtxt("test.txt", dtype='str')
 
-# In[28]:
 
 
 if __name__ == "__main__":
